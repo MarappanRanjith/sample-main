@@ -6,6 +6,12 @@ import winsound
 from src.data_fetcher import DataFetcher
 from src.smc_analyzer import SMCAnalyzer
 from src.utils import logger
+from src.config import (
+    CANDLE_FETCH_COUNT,
+    CONFLUENCE_THRESHOLD,
+    MARKET_OPEN_TIME,
+    MARKET_CLOSE_TIME,
+)
 
 def format_upstox_time(iso_time_str):
     """Converts Upstox ISO timestamp to a readable format like 22-Jun-2026 11:33 AM."""
@@ -30,7 +36,7 @@ def main():
     print("\n" + "="*60)
     print("🎯 Multi-Index SMC Sniper Bot Active")
     print(f"Tracking: {', '.join(target_indices)}")
-    print("Threshold: Score >= 2 (Target: 3-5 trades/day per index)")
+    print(f"Threshold: Score >= {CONFLUENCE_THRESHOLD} (Dynamic from config)")
     print("Listening for High-Confluence Setups...")
     print("="*60 + "\n")
 
@@ -44,8 +50,16 @@ def main():
             time.sleep(3600)
             continue
             
-        market_start = now.replace(hour=9, minute=15, second=0, microsecond=0)
-        market_end = now.replace(hour=15, minute=30, second=0, microsecond=0)
+        market_start = now.replace(
+        hour=MARKET_OPEN_TIME.hour,
+        minute=MARKET_OPEN_TIME.minute,
+        second=0, microsecond=0
+        )
+        market_end = now.replace(
+            hour=MARKET_CLOSE_TIME.hour,
+            minute=MARKET_CLOSE_TIME.minute,
+            second=0, microsecond=0
+        )
         
         if now < market_start or now > market_end:
             print(f"[{current_time_str}] Outside market hours (09:15 AM - 03:30 PM). Sleeping for 5 minutes...")
@@ -59,14 +73,14 @@ def main():
             symbol = data_fetcher.get_current_futures_symbol(index_name)
             
             if symbol:
-                candles = data_fetcher.get_recent_candles(symbol, interval="1minute", count=150)
+                candles = data_fetcher.get_recent_candles(symbol, interval="1minute", count=CANDLE_FETCH_COUNT)
                 
                 if candles:
                     fvgs = SMCAnalyzer.analyze_fvgs(candles)
                     enriched_fvgs = SMCAnalyzer.enrich_with_confluence(candles, fvgs)
                     
                     # Threshold lowered from 3 to 2 to allow 3-5 entries per day
-                    sniper_setups = [f for f in enriched_fvgs if f['confluence_count'] >= 2]
+                    sniper_setups = [f for f in enriched_fvgs if f['confluence_count'] >= CONFLUENCE_THRESHOLD]
                     
                     if sniper_setups:
                         latest_setup = sniper_setups[-1] 
