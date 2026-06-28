@@ -140,7 +140,7 @@ KILLZONE_RANGES = {
 # =============================================================================
 
 # Minimum weighted confluence score required for a signal to pass
-CONFLUENCE_THRESHOLD = 4.0
+CONFLUENCE_THRESHOLD = 2.0
 
 # ENH #12: Weighted confluence scoring — each factor's contribution
 CONFLUENCE_WEIGHTS = {
