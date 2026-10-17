@@ -1,0 +1,1 @@
+"""SMC analysis and strategy implementation."""

@@ -4,7 +4,7 @@ from pathlib import Path
 
 from src.framework.data import CandleInputError, candles_from_csv, candles_from_json
 from src.framework.engine import AnalysisFramework
-from src.framework.strategies.smc import SMCStrategy
+from src.smc.strategy import SMCStrategy
 
 
 SAMPLE_CANDLES = [

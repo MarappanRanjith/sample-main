@@ -1,7 +1,7 @@
 import requests
 from urllib.parse import quote
-from src.config import UPSTOX_ACCESS_TOKEN, UPSTOX_BASE_URL
-from src.utils import logger
+from src.live_bot.config import UPSTOX_ACCESS_TOKEN, UPSTOX_BASE_URL
+from src.live_bot.utils import logger
 
 
 def get_auth_headers():
@@ -88,7 +88,7 @@ class UpstoxHandler:
         from urllib.parse import quote
         import time
         import datetime
-        from src.utils import logger
+        from src.live_bot.utils import logger
 
         encoded_symbol = quote(symbol)
         intraday_endpoint = f"{UPSTOX_BASE_URL}/historical-candle/intraday/{encoded_symbol}/{interval}"

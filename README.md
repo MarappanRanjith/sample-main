@@ -6,12 +6,9 @@ The project shares one validated OHLCV candle format across analysis strategies.
 
 ```text
 data/                         Shared JSON datasets
-src/framework/data.py         Candle schema, validation, JSON and CSV readers
-src/framework/engine.py       Strategy registry and common analysis entry point
-src/framework/strategies/     Strategy implementations (currently SMC)
-src/smc_analyzer.py           SMC pattern calculations
-src/smc_service.py            Compatibility entry point used by the dashboard
-src/live_bot/runner.py        Live SMC scanner implementation
+src/framework/                Shared candle data and strategy engine
+src/smc/                      SMC analyzer, strategy, and dashboard service
+src/live_bot/                 Live scanner and its runtime dependencies
 live_bot.py                   Executable launcher for the live scanner
 templates/                    Dashboard HTML
 static/                       Dashboard styles and browser code
@@ -43,7 +40,7 @@ python -m pip install -r requirements.txt
 python app.py
 ```
 
-Open <http://127.0.0.1:5000>. For the live SMC scanner, configure `.env` with an Upstox access token and run `python live_bot.py`. The separate full trading-data loop can be run with `python src/main.py`. The dashboard itself does not place orders.
+Open <http://127.0.0.1:5000>. For the live SMC scanner, configure `.env` with an Upstox access token and run `python live_bot.py`. The separate full trading-data loop can be run with `python -m src.live_bot.main`. The dashboard itself does not place orders.
 
 ## Test
 

@@ -3,9 +3,9 @@ import datetime
 import os
 import csv
 import winsound
-from src.data_fetcher import DataFetcher
-from src.smc_analyzer import SMCAnalyzer
-from src.utils import logger
+from src.live_bot.data_fetcher import DataFetcher
+from src.smc.analyzer import SMCAnalyzer
+from src.live_bot.utils import logger
 
 
 def format_upstox_time(iso_time_str):

@@ -7,19 +7,18 @@ import threading
 import logging
 from pathlib import Path
 
-# Ensure project root is on sys.path when running `python src/main.py` so
-# `from src...` imports work as expected. This keeps both `python src/main.py`
-# and `python -m src.main` usable.
+# Ensure project root is on sys.path for direct script execution as well as
+# `python -m src.live_bot.main`.
 project_root = Path(__file__).resolve().parents[1]
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from src.config import IST_TIMEZONE, MARKET_OPEN_TIME, MARKET_CLOSE_TIME, PRE_MARKET_ANALYSIS_TIME, VOLATILITY_FILTER_WINDOW_END, UPSTOX_ACCESS_TOKEN
-from src.utils import logger
-from src.upstox_handler import UpstoxHandler
-from src.data_fetcher import DataFetcher
-from src.trading_logic import TradingLogic
-from src.websocket_handler import WebSocketHandler
+from src.live_bot.config import IST_TIMEZONE, MARKET_OPEN_TIME, MARKET_CLOSE_TIME, PRE_MARKET_ANALYSIS_TIME, VOLATILITY_FILTER_WINDOW_END, UPSTOX_ACCESS_TOKEN
+from src.live_bot.utils import logger
+from src.live_bot.upstox_handler import UpstoxHandler
+from src.live_bot.data_fetcher import DataFetcher
+from src.live_bot.trading_logic import TradingLogic
+from src.live_bot.websocket_handler import WebSocketHandler
 
 class TradingBot:
     def __init__(self):

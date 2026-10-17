@@ -2,9 +2,9 @@
 import threading
 import time
 import logging
-from src.config import INDIA_VIX_SYMBOL, NIFTY_SYMBOL, BANKNIFTY_SYMBOL
-from src.utils import logger
-from src.upstox_handler import get_auth_headers
+from src.live_bot.config import INDIA_VIX_SYMBOL, NIFTY_SYMBOL, BANKNIFTY_SYMBOL
+from src.live_bot.utils import logger
+from src.live_bot.upstox_handler import get_auth_headers
 import requests
 
 class WebSocketHandler:

@@ -10,7 +10,7 @@ from src.framework.data import (
     normalize_candles,
 )
 from src.framework.engine import AnalysisFramework
-from src.framework.strategies.smc import SMCStrategy
+from src.smc.strategy import SMCStrategy
 
 analysis_framework = AnalysisFramework()
 analysis_framework.register("smc", SMCStrategy())

@@ -7,10 +7,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import datetime
 import time
 import pandas as pd
-from src.data_fetcher import DataFetcher
-from src.smc_analyzer import SMCAnalyzer
-from src.utils import logger
-from src.config import NIFTY_SYMBOL, BANKNIFTY_SYMBOL
+from src.live_bot.data_fetcher import DataFetcher
+from src.smc.analyzer import SMCAnalyzer
+from src.live_bot.utils import logger
+from src.live_bot.config import NIFTY_SYMBOL, BANKNIFTY_SYMBOL
 
 class SMCBacktester:
     def __init__(self):

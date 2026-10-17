@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Any
 
-from src.smc_analyzer import SMCAnalyzer
+from src.smc.analyzer import SMCAnalyzer
 
 
 def _volume_surge(candles: list[dict[str, Any]], index: int) -> float:

@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 from src.framework.data import candles_from_file, load_candles
-from src.smc_service import CandleInputError, analyze_candles
+from src.smc.service import CandleInputError, analyze_candles
 
 ROOT = Path(__file__).resolve().parent
 

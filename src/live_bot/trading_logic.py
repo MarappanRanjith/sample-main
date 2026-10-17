@@ -1,18 +1,18 @@
 # src/trading_logic.py
 import logging
-from src.config import (
+from src.live_bot.config import (
     VIX_THRESHOLD, BRENT_CRUDE_THRESHOLD, USD_INR_SHARP_DEPRECIATION_THRESHOLD,
     USD_INR_SHARP_APPRECIATION_THRESHOLD, NIFTY_SYMBOL, INDIA_VIX_SYMBOL, 
     BANKNIFTY_SYMBOL, IST_TIMEZONE, MARKET_OPEN_TIME, MARKET_CLOSE_TIME,
     VOLATILITY_FILTER_WINDOW_END, WEEKLY_EXPIRY_TRADING_DAY
 )
-from src.utils import logger
-from src.data_fetcher import DataFetcher
-from src.upstox_handler import UpstoxHandler
-from src.websocket_handler import WebSocketHandler
+from src.live_bot.utils import logger
+from src.live_bot.data_fetcher import DataFetcher
+from src.live_bot.upstox_handler import UpstoxHandler
+from src.live_bot.websocket_handler import WebSocketHandler
 import datetime
-from src.candle_patterns import CandlestickAnalyzer
-from src.smc_analyzer import SMCAnalyzer
+from src.live_bot.candle_patterns import CandlestickAnalyzer
+from src.smc.analyzer import SMCAnalyzer
 
 class TradingLogic:
     def __init__(self, websocket_handler: WebSocketHandler, upstox_handler: UpstoxHandler, data_fetcher: DataFetcher):

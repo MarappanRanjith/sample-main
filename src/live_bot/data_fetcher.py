@@ -2,10 +2,10 @@ import datetime
 import pandas as pd
 import yfinance as yf
 import requests
-from src.utils import logger
-from src.upstox_handler import UpstoxHandler, get_auth_headers
-from src.smc_analyzer import SMCAnalyzer
-from src.config import UPSTOX_BASE_URL, NIFTY_SYMBOL, BANKNIFTY_SYMBOL, EMA_PERIOD
+from src.live_bot.utils import logger
+from src.live_bot.upstox_handler import UpstoxHandler, get_auth_headers
+from src.smc.analyzer import SMCAnalyzer
+from src.live_bot.config import UPSTOX_BASE_URL, NIFTY_SYMBOL, BANKNIFTY_SYMBOL, EMA_PERIOD
 
 UNDERLYING_OPTION_SYMBOLS = {
     "NSE_INDEX|Nifty 50": "NSE_FO|NIFTY",
@@ -74,7 +74,7 @@ class DataFetcher:
     
     def get_recent_candles(self, symbol, interval="1minute", count=150):
         """Fetches recent candles and formats them with VWAP and Vol SMA for SMC Analyzer."""
-        from src.utils import logger
+        from src.live_bot.utils import logger
         import pandas as pd
         
         logger.info(f"Fetching {count} recent {interval} candles for {symbol}...")
