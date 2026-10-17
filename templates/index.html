@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMC Signal Desk</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Market structure / data validation</p>
+        <h1>SMC Signal Desk</h1>
+        <p class="lede">Feed candles in, inspect the setup quality, and keep execution out of the loop.</p>
+      </div>
+      <div class="status-chip"><span class="status-dot"></span> Analysis only</div>
+    </header>
+
+    <section class="workspace">
+      <aside class="control-panel">
+        <div class="panel-heading">
+          <span class="section-index">01</span>
+          <div><h2>Feed data</h2><p>JSON candles: time, open, high, low, close, volume</p></div>
+        </div>
+        <form id="upload-form">
+          <label class="dropzone" for="candle-file">
+            <span class="upload-mark">+</span>
+            <strong>Drop candle JSON here</strong>
+            <span id="file-name">or browse from your computer</span>
+            <input id="candle-file" type="file" accept=".json,application/json,.csv,text/csv">
+          </label>
+          <button class="primary-button" type="submit"><span>Run scan</span><span>-></span></button>
+        </form>
+        <div class="divider"><span>or start with</span></div>
+        <button id="demo-button" class="ghost-button" type="button">Load demo candles <span>+</span></button>
+        <div class="format-note">
+          <strong>Input contract</strong>
+          <p>Use oldest-first OHLCV rows in a JSON array. CSV files are still accepted. At least three candles are required; 100+ gives the best premium/discount context.</p>
+        </div>
+      </aside>
+
+      <section class="results-panel">
+        <div class="results-header">
+          <div><p class="eyebrow">Live scan output</p><h2 id="result-title">Waiting for candle data</h2></div>
+          <span id="scan-time" class="muted"></span>
+        </div>
+        <div id="error" class="error-banner" hidden></div>
+        <div id="empty-state" class="empty-state"><div class="empty-ring">01</div><h3>Your signal board is clear</h3><p>Upload a candle file or load the demo to see FVGs, order blocks, and confluence checks.</p></div>
+        <div id="dashboard" hidden>
+          <div id="metrics" class="metrics"></div>
+          <div class="table-wrap">
+            <div class="table-heading"><h3>Detected imbalances</h3><span id="table-caption" class="muted"></span></div>
+            <div class="table-scroll"><table><thead><tr><th>Signal</th><th>Entry zone</th><th>Score</th><th>HTF bias</th><th>Zone</th><th>Checks</th></tr></thead><tbody id="alerts-body"></tbody></table></div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

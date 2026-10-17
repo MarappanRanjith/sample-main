@@ -1,0 +1,1 @@
+"""Analysis strategies supported by the framework."""

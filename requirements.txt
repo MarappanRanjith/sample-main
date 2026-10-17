@@ -1,0 +1,9 @@
+# requirements.txt
+requests
+pandas
+numpy
+yfinance
+apscheduler
+python-dotenv  # Useful for managing secrets like API keys
+pytz           # For timezone handling
+# ta-lib        # Uncomment if you install and use TA-Lib

@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.log
+logs/
+**/logs/
+.env
+.env.*
+!.env.example
+node_modules/
+.pytest_cache/
+.mypy_cache/
+dist/
+/Live_Sniper_Alerts.csv
+/src/SMC_Ultra_Sniper_Report.xlsx
